@@ -46,7 +46,7 @@ class Footer extends Component {
             <div class="footer-icons">
      
             <a href="https://www.facebook.com/mdmahidul.moon/"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
+            
             <a href="https://www.linkedin.com/in/mahidul-moon-281509144/"><i class="fa fa-linkedin"></i></a>
             <a href="https://github.com/mahidulmoon"><i class="fa fa-github"></i></a>
             
