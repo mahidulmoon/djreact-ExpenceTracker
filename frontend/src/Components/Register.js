@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import axios from 'axios';
 class Register extends Component {
     state={
         register:{
@@ -15,7 +15,7 @@ class Register extends Component {
     }
     onsubmit= e =>{
         e.preventDefault();
-        // axios.post('http://127.0.0.1:8000/category/userregister/',this.state.register).then(response => alert("Success"))
+        axios.post('http://127.0.0.1:8000/todoapp/registration/',this.state.register).then(response => alert("Success")).catch(error => alert("Please Check Your Input"))
     }
 
     render() {

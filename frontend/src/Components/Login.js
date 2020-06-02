@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import axios from 'axios';
 class Login extends Component {
     state = {
         logindata:{
@@ -15,11 +15,11 @@ class Login extends Component {
     }
     onsubmit = e =>{
         e.preventDefault();
-        // axios.post('http://127.0.0.1:8000/auth/',this.state.logindata).then(response => {
-        //     this.setState({ token: response.data }); 
-        //     localStorage.setItem('token', this.state.token.token);
-        //     alert("Success");
-        // }).catch( error => alert("Username And Password isnot matched!!!"))
+        axios.post('http://127.0.0.1:8000/auth/',this.state.logindata).then(response => {
+            this.setState({ token: response.data }); 
+            localStorage.setItem('token', this.state.token.token);
+            alert("Success");
+        }).catch( error => alert("Username And Password isnot matched!!!"))
     }
     render() {
         return (
