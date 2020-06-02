@@ -9,6 +9,10 @@ class Navbar extends Component {
             this.setState({ isLogin: true});
         }
     }
+    logout(){
+        localStorage.removeItem("token");
+        window.location.reload(false);
+    }
     render() {
         return (
             <div id='cssmenu'>
@@ -16,7 +20,7 @@ class Navbar extends Component {
                 <li><a href='/'><span>Home</span></a></li>
                 <li><a href='/expencetracker'><span>Expense Tracker</span></a></li>
                 {this.state.isLogin ===false && <li><a href='/login'><span>LogIn</span></a></li>}
-                {this.state.isLogin && <li><a href=''><span>LogOut</span></a></li>}
+                {this.state.isLogin && <li onClick={this.logout}><a><span>LogOut</span></a></li>}
                 <li><a href='/register'><span>Register</span></a></li>
                 <li><a href='/todolist'><span>ToDo</span></a></li>
                 

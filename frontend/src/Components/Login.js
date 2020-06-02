@@ -19,6 +19,7 @@ class Login extends Component {
             this.setState({ token: response.data }); 
             localStorage.setItem('token', this.state.token.token);
             alert("Success");
+            window.location.reload(false);
         }).catch( error => alert("Username And Password isnot matched!!!"))
     }
     render() {

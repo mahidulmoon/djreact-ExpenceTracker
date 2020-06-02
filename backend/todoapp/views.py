@@ -4,14 +4,59 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
 from django.contrib.auth.models import User
 from .serializers import TodoappSerializer, UserSerializer
+from rest_framework.authtoken.models import Token
 from .models import Todoapp
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import status
 
 # Create your views here.
 
 
-class TodoViewSet(viewsets.ModelViewSet):
-    queryset=Todoapp.objects.all()
-    serializer_class=TodoappSerializer
+# class TodoViewSet(viewsets.ModelViewSet):
+#     #queryset=Todoapp.objects.all()
+#     serializer_class=TodoappSerializer
+
+#     # def get_queryset(self,request, *args, **kwargs):
+#     #     token = request.data['token']
+#     #     user1 = Token.objects.get(key=token).user
+#     #     queryset = Todoapp.objects.filter(user=user1)
+#     #     return queryset
+
+#     def post(self,request,*args, **kwargs):
+#         token = request.data['token']
+#         title = request.data['title']
+#         print(token)
+#         # user1 = Token.objects.filter(key=token).user
+#         # todo = Todoapp(user=user1,title=title)
+#         # todo.save()
+
+@api_view(['GET', 'POST'])
+def TodoViewSet(request):
+    if request.method == 'GET':
+        # data = Student.objects.all()
+
+        # serializer = StudentSerializer(data, context={'request': request}, many=True)
+
+        # return Response(serializer.data)
+        pass
+
+    elif request.method == 'POST':
+        token = request.data['token']
+        title = request.data['title']
+        user1 = Token.objects.get(key=token).user
+        Todoapp.objects.create(user=user1,title=title)
+        return Response(status=status.HTTP_201_CREATED)
+        # data = {
+        #     'user': user1,
+        #     'title': title,
+        # }
+        # serializer = TodoappSerializer(data=data)
+        # if serializer.is_valid():
+        #     serializer.save()
+        #     return Response(status=status.HTTP_201_CREATED)
+            
+        #return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserViewSet(viewsets.ModelViewSet):
