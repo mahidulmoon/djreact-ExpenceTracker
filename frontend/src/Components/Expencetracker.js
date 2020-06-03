@@ -9,9 +9,6 @@ class Expencetracker extends Component {
                 
 
                 <div class="container">
-                    <h2>Expense Tracker</h2>
-                    <h4>Your Balance</h4>
-                    <h1 id="balance">$0.00</h1>
 
                     <React.Fragment>
                         <IncExp />
