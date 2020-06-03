@@ -6,10 +6,11 @@ class Todoapp extends Component {
         title:'',
         islogin: false,
         todolist:[],
+        userid:[],
     }
     componentDidMount(){
         if(localStorage.getItem('token')){
-            this.setState({token:localStorage.getItem('token'),islogin:true});
+            this.setState({token:localStorage.getItem('token'),islogin:true,userid:localStorage.getItem('userid')});
             axios.get('http://127.0.0.1:8000/todoapp/todolist/').then(response => this.setState({ todolist: response.data }))
         }else{
             alert("Please Login");
@@ -50,7 +51,10 @@ class Todoapp extends Component {
                         
                         
                         {this.state.todolist.map(todo =>{
-                            return <li>{todo.title} <button onClick={e => this.deletebutton(e, todo.id)}>X</button></li>
+                            if(parseInt(this.state.userid) === parseInt(todo.user)){
+                                return <li>{todo.title} <button onClick={e => this.deletebutton(e, todo.id)}>X</button></li>
+                            }
+                            
                         })}
                     </ul>
             </div>

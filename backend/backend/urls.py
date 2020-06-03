@@ -20,5 +20,5 @@ from rest_framework.authtoken.views import obtain_auth_token
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('todoapp/',include('todoapp.urls')),
-    path('auth/',obtain_auth_token),
+    #path('auth/',obtain_auth_token),
 ]

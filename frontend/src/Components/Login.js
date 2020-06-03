@@ -15,9 +15,10 @@ class Login extends Component {
     }
     onsubmit = e =>{
         e.preventDefault();
-        axios.post('http://127.0.0.1:8000/auth/',this.state.logindata).then(response => {
+        axios.post('http://127.0.0.1:8000/todoapp/authenticate/',this.state.logindata).then(response => {
             this.setState({ token: response.data }); 
             localStorage.setItem('token', this.state.token.token);
+            localStorage.setItem('userid',this.state.token.id);
             alert("Success");
             window.location.reload(false);
         }).catch( error => alert("Username And Password isnot matched!!!"))
