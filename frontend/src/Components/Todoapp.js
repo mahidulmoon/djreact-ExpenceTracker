@@ -5,10 +5,14 @@ class Todoapp extends Component {
         token:[],
         title:'',
         islogin: false,
+        todolist:[],
     }
     componentDidMount(){
         if(localStorage.getItem('token')){
-            this.setState({token:localStorage.getItem('token'),islogin:true})
+            this.setState({token:localStorage.getItem('token'),islogin:true});
+            axios.get('http://127.0.0.1:8000/todoapp/todolist/').then(response => this.setState({ todolist: response.data }))
+        }else{
+            alert("Please Login");
         }
     }
     addtodo= e =>{
@@ -17,7 +21,7 @@ class Todoapp extends Component {
             //this.setState({ token: response.data }); 
             //localStorage.setItem('token', this.state.token.token);
             alert("Success");
-            //window.location.reload(false);
+            window.location.reload(false);
             }).catch( error => alert("Error to save"+error))
             //console.log(this.state);
         }else{
@@ -26,6 +30,11 @@ class Todoapp extends Component {
     }
     inputchange = e =>{
         this.setState({title: e.target.value});
+    }
+    deletebutton = (e,todo) =>{
+        e.preventDefault();
+        axios.delete('http://127.0.0.1:8000/todoapp/delete/'+todo+'/').then(response=> alert("done"));
+        window.location.reload(false);
     }
     render() {
         return (
@@ -38,12 +47,11 @@ class Todoapp extends Component {
                     </div>
 
                     <ul id="myUL">
-                        <li>Hit the gym</li>
-                        <li className="checked">Pay bills<button >X</button></li>
-                        <li>Meet George</li>
-                        <li>Buy eggs</li>
-                        <li>Read a book</li>
-                        <li>Organize office</li>
+                        
+                        
+                        {this.state.todolist.map(todo =>{
+                            return <li>{todo.title} <button onClick={e => this.deletebutton(e, todo.id)}>X</button></li>
+                        })}
                     </ul>
             </div>
         );

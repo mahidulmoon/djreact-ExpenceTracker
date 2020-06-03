@@ -13,9 +13,9 @@ from rest_framework import status
 # Create your views here.
 
 
-# class TodoViewSet(viewsets.ModelViewSet):
-#     #queryset=Todoapp.objects.all()
-#     serializer_class=TodoappSerializer
+class TodolistViewSet(viewsets.ModelViewSet):
+    queryset=Todoapp.objects.all()
+    serializer_class=TodoappSerializer
 
 #     # def get_queryset(self,request, *args, **kwargs):
 #     #     token = request.data['token']
@@ -30,6 +30,30 @@ from rest_framework import status
 #         # user1 = Token.objects.filter(key=token).user
 #         # todo = Todoapp(user=user1,title=title)
 #         # todo.save()
+
+@api_view(['DELETE'])
+def delete_todo(request,pk):
+    try:
+        result = Todoapp.objects.get(pk=pk)
+        
+
+    except Todoapp.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+    if request.method == 'DELETE':
+        result.delete()
+        #print(result)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# @api_view(['POST'])
+# def Getuser(request):
+#     if request.method == 'POST':
+#         token = request.data['token']
+#         user1 = Token.objects.get(key=token).user
+#         return Response({ "username":user1 })
+
 
 @api_view(['GET', 'POST'])
 def TodoViewSet(request):
