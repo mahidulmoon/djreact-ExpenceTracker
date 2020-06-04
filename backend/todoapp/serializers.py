@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
+from expensetracker.models import ExpenseTracker
 from .models import Todoapp
 
 
@@ -15,6 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
         user=User.objects.create_user(**validated_data)
         user.save()
         Token.objects.create(user=user)
+        ExpenseTracker.objects.create(user=user)
         return user
 
 class TodoappSerializer(serializers.ModelSerializer):

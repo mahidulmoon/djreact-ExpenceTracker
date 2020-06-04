@@ -21,6 +21,7 @@ class IncExp extends Component {
                     {this.state.expanselist.map(expanse =>{
                         if(parseInt(this.state.userid) === parseInt(expanse.user)){
                             return <div>
+                                {localStorage.setItem('expanseid',expanse.id)}
                                 <h1 id="balance">${expanse.totalbalance}</h1>
                                 <div class="inc-exp-container">
                                     <div>

@@ -11,6 +11,8 @@ class Navbar extends Component {
     }
     logout(){
         localStorage.removeItem("token");
+        localStorage.removeItem("userid");
+        localStorage.removeItem("expanseid");
         window.location.reload(false);
     }
     render() {

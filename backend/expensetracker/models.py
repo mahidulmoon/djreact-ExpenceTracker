@@ -4,6 +4,6 @@ from django.contrib.auth.models import User
 
 class ExpenseTracker(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    totalbalance = models.FloatField(blank=False)
+    totalbalance = models.FloatField(default=0.00,blank=False)
     income = models.FloatField(default=0.00,blank=False)
     expense = models.FloatField(default=0.00,blank=False)
