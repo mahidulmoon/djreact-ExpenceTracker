@@ -5,13 +5,12 @@ class Transaction extends Component {
         expanse: [],
         userid:[],
         transaction:{
-            text:'',amount:0,
+            text:'',amount:0,user:parseInt(localStorage.getItem('userid')),
         }
     }
     componentDidMount(){
         const userid = parseInt(localStorage.getItem('expanseid'));
         axios.get(`http://127.0.0.1:8000/expensetracker/expanselist/${userid}/`).then(response => this.setState({expanse: response.data}))
-
             
         
     }
@@ -36,12 +35,13 @@ class Transaction extends Component {
         }
         //console.log(this.state.expanse);
         axios.put(`http://127.0.0.1:8000/expensetracker/expanselist/${userid}/`,this.state.expanse).then(response => {alert("Successfully add");window.location.reload(false);})
+        axios.post('http://127.0.0.1:8000/expensetracker/history/',this.state.transaction).then(response => console.log(response));
     } 
     render() {
         return (
             <div>
                 <h3>Add new transaction</h3>
-                <h6>UserId:{this.state.expanse.id}</h6>
+                <h6>UserId:{this.state.expanse.user}</h6>
                     <form id="form">
                         <div class="form-control">
                             <label for="text">Text</label>
