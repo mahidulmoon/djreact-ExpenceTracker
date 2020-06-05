@@ -17,6 +17,8 @@ from rest_framework.authtoken.views import ObtainAuthToken
 class TodolistViewSet(viewsets.ModelViewSet):
     queryset=Todoapp.objects.all()
     serializer_class=TodoappSerializer
+    # authentication_classes=[TokenAuthentication, ]
+    # permission_classes=[IsAuthenticated, ]
 
 #     # def get_queryset(self,request, *args, **kwargs):
 #     #     token = request.data['token']

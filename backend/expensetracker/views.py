@@ -16,8 +16,12 @@ from rest_framework.authtoken.views import ObtainAuthToken
 class ExpanseViewSet(viewsets.ModelViewSet):
     queryset=ExpenseTracker.objects.all()
     serializer_class=ExpanseTrackerSerializer
+    # authentication_classes=[TokenAuthentication, ]
+    # permission_classes=[IsAuthenticated, ]
 
 
 class HistoryViewSet(viewsets.ModelViewSet):
     queryset = History.objects.all()
     serializer_class = HistorySerializer
+    # authentication_classes=[TokenAuthentication, ]
+    # permission_classes=[IsAuthenticated, ]

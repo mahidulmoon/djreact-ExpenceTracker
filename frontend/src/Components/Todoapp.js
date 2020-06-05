@@ -11,7 +11,13 @@ class Todoapp extends Component {
     componentDidMount(){
         if(localStorage.getItem('token')){
             this.setState({token:localStorage.getItem('token'),islogin:true,userid:localStorage.getItem('userid')});
-            axios.get('http://127.0.0.1:8000/todoapp/todolist/').then(response => this.setState({ todolist: response.data }))
+             axios.get('http://127.0.0.1:8000/todoapp/todolist/'
+            //,{
+            //     headers:{
+            //         Authorization: `Token ${this.state.token}`
+            //     }
+            // }
+            ).then(response => this.setState({ todolist: response.data }))
         }else{
             alert("Please Login");
         }
