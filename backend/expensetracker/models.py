@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 # Create your models here.
 
 class ExpenseTracker(models.Model):
@@ -8,8 +9,8 @@ class ExpenseTracker(models.Model):
     income = models.FloatField(default=0.00,blank=False)
     expense = models.FloatField(default=0.00,blank=False)
 
-
 class History(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField()
     amount = models.FloatField(blank=False)
+    date = models.DateTimeField(default=datetime.now(), blank=True)

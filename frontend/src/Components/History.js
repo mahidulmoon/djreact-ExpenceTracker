@@ -23,7 +23,7 @@ class History extends Component {
                                     </li> 
                                 }else{
                                     return <li className="minus">
-                                    {singlehistory.text} <span>${singlehistory.amount}</span><button className="delete-btn">x</button>
+                                    {singlehistory.text}({singlehistory.date}) <span>${singlehistory.amount}</span><button className="delete-btn">x</button>
                                     </li> 
                                 }
                             }
